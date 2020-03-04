@@ -1,0 +1,57 @@
+.panel:global(.ui.segment){
+    padding: 18px;
+}
+
+.buttonContainer{
+    display: flex;
+}
+.buttonContainer :global(.button){
+    margin-right: 13px;
+    display: flex;
+    align-items: center;
+
+}
+
+.buttonContainer :global(.ui.button) :global(.icon){
+    height: 23px !important;
+    font-size: 23px;
+}
+
+.checkboxContainer{
+    display: flex;
+
+}
+.checkboxContainer :global(.field){
+    margin-right: 49px !important;
+    margin-bottom: 0 !important;
+}
+
+.checkboxContainer :global(.ui.checkbox) :global(label){
+    padding-left: 29px;
+}
+
+.collection:global(.ui.segment){
+    background: none;
+    border: none;
+    box-shadow: none;
+    padding: 0;
+}
+
+.collection>:global(.ui.segment){
+    float: left;
+    margin-right: 30px !important;
+}
+
+.collection>:global(.ui.segment):nth-child(3n){
+    margin-right: 0 !important;
+}
+
+@media screen and (max-width: 1214px) {
+    .collection>:global(.ui.segment):nth-child(3n){
+        margin-right: 30px !important;
+    }
+}
+
+.collection:global(.ui.segment) :global(.ui.segment) {
+    margin-bottom: 30px;
+}

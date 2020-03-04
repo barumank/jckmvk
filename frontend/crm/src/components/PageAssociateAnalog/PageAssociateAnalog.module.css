@@ -1,0 +1,21 @@
+.tabItemColumn{
+    flex-direction: column;
+}
+.tabItemColumn>*{
+    margin-bottom: 10px;
+}
+.tabItemColumn :global(.ui.search .prompt){
+    border-radius: 5px;
+}
+
+.bindButton:global(.ui.button){
+    font: 14px 'OpenSansSemiBold';
+    color: #ffffff;
+    display: flex;
+    align-items: center;
+}
+.bindButton:global(.ui.button .icon) {
+    color: #ffffff;
+    font-size: 22px;
+    height: 22px;
+}

@@ -1,0 +1,47 @@
+:global(.ui.segment) .inProgress{
+    background-color: #e0f3f2;
+}
+:global(.ui.segment) .inProgress :global(.upload), .inProgress :global(.groupScroll){
+    background-color: #60bab5;
+}
+:global(.ui.segment) .documents{
+    background-color: #e0e8f3;
+}
+:global(.ui.segment) .documents :global(.upload), .documents :global(.groupScroll){
+    background-color: #889fbe;
+}
+:global(.ui.segment) .finance{
+    background-color: #e0f3e8;
+}
+:global(.ui.segment) .finance :global(.upload), .finance :global(.groupScroll){
+    background-color: #7ac59a;
+}
+:global(.ui.segment) .quick{
+    background-color: #f5e5db;
+}
+:global(.ui.segment) .quick :global(.upload), .quick :global(.groupScroll){
+    background-color: #e2a074;
+}
+:global(.ui.segment) .other{
+    background-color: #f9f6de;
+}
+:global(.ui.segment) .other :global(.upload), .other :global(.groupScroll){
+    background-color: #d1c76e;
+}
+
+.statusContainer{
+    display: flex;
+    flex-flow: row wrap;
+}
+.statusContainer :global(.ui.segment){
+    margin: 0 10px 10px 0;
+}
+
+.statusContainer :global(.ui.segment):nth-child(3n){
+    margin-right: 0;
+}
+@media screen and (max-width: 1214px) {
+    .statusContainer :global(.ui.segment):nth-child(3n){
+        margin-right: 10px;
+    }
+}

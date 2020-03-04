@@ -1,0 +1,46 @@
+openapi: 3.0.1
+
+info:
+  version: 1.0.0
+  title: 'CRM API'
+
+servers:
+  - url: http://127.0.0.1:8080/api/crm/v1/
+    description: 'Локальный сервер'
+
+paths:
+  /brand/create:
+    $ref: './paths/brand/create.yml#/paths/brand~1create'
+  /brand/get/{id}:
+    $ref: './paths/brand/get.yml#/paths/brand~1get~1{id}'
+
+  /auth/sign-in:
+    $ref: './paths/auth/sign-in.yml#/paths/auth~1sign-in'
+  /auth/sign-up:
+    $ref: './paths/auth/sign-up.yml#/paths/auth~1sign-up'
+  /auth/verify-email/{user}:
+    $ref: './paths/auth/verify-email.yml#/paths/auth~1verify-email~1{user}'
+  /auth/user:
+    $ref: './paths/auth/user.yml#/paths/auth~1user'
+  /profile/videos:
+    $ref: './paths/profile/videos.yml#/paths/profile~1videos'
+  /profile/videos/{video}:
+    $ref: './paths/profile/videos.yml#/paths/profile~1videos~1{video}'
+  /video-files:
+    $ref: './paths/video-files.yml#/paths/video-files'
+
+components:
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT
+
+  headers:
+    Api-Token:
+      description: 'JWT токен'
+      schema:
+        type: string
+
+security:
+  - bearerAuth: []

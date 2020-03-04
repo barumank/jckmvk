@@ -1,0 +1,16 @@
+{
+  "socket": {
+    "port": 8088,
+    "type": "tcp"
+  },
+  "mySql": {
+    "host": "mysql",
+    "port": 3308,
+    "user": "root",
+    "password": "testdbmysqlpass",
+    "database": "mvk_crm",
+    "tableName": "log",
+    "insertSize": 400,
+    "insertTimeOut": 10
+  }
+}

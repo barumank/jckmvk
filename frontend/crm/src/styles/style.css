@@ -1,0 +1,123 @@
+@font-face {
+    font-family: "OpenSansRegular";
+    src: url("fonts/OpenSansRegular/OpenSansRegular.eot");
+    src: url("fonts/OpenSansRegular/OpenSansRegular.eot?#iefix") format("embedded-opentype"),
+    url("fonts/OpenSansRegular/OpenSansRegular.woff") format("woff"),
+    url("fonts/OpenSansRegular/OpenSansRegular.ttf") format("truetype");
+    font-style: normal;
+    font-weight: normal;
+}
+
+@font-face {
+    font-family: "OpenSansSemiBold";
+    src: url("fonts/OpenSansSemiBold/OpenSansSemiBold.eot");
+    src: url("fonts/OpenSansSemiBold/OpenSansSemiBold.eot?#iefix") format("embedded-opentype"),
+    url("fonts/OpenSansSemiBold/OpenSansSemiBold.woff") format("woff"),
+    url("fonts/OpenSansSemiBold/OpenSansSemiBold.ttf") format("truetype");
+    font-style: normal;
+    font-weight: normal;
+}
+
+@font-face {
+    font-family: "OpenSansBold";
+    src: url("fonts/OpenSansBold/OpenSansBold.eot");
+    src: url("fonts/OpenSansBold/OpenSansBold.eot?#iefix") format("embedded-opentype"),
+    url("fonts/OpenSansBold/OpenSansBold.woff") format("woff"),
+    url("fonts/OpenSansBold/OpenSansBold.ttf") format("truetype");
+    font-style: normal;
+    font-weight: normal;
+}
+
+body {
+    height: 100%;
+}
+
+#root {
+    display: flex;
+    flex-direction: column;
+    min-height: 100%;
+    min-width: 1200px;
+    background-color: #f3f1f0;
+}
+
+h6.ui.header, h5.ui.header, h4.ui.header {
+    font-family: 'OpenSansSemiBold';
+}
+h4.ui.header {
+    font-size: 16px;
+}
+
+.ui.button {
+    font: 13px 'OpenSansRegular';
+    color: #000000;
+    padding: 7px 15px;
+}
+
+.ui.button:hover {
+    background-color: #bebebe;
+}
+
+.ui.checkbox label {
+    font: 13px 'OpenSansRegular';
+}
+
+.ui.button .icon {
+    color: #6f6f6d;
+    opacity: 1 !important;
+}
+
+.ui.breadcrumb {
+    font: 13px 'OpenSansRegular';
+}
+
+.ui.breadcrumb .section,
+.ui.breadcrumb .divider {
+    color: #7c7c7c;
+}
+
+.ui.breadcrumb .section.active {
+    color: #000000;
+    font-weight: normal;
+    font-size: 13px;
+}
+
+::-webkit-scrollbar, body ::-webkit-scrollbar {
+    width: 12px;
+
+}
+
+::-webkit-scrollbar-track, body ::-webkit-scrollbar-track {
+    background-color: #ffffff;
+    border: 1px solid #e0e1e2;
+}
+
+::-webkit-scrollbar-thumb, body ::-webkit-scrollbar-thumb {
+    background-color: #60bab5;
+}
+
+::-webkit-scrollbar-thumb:hover, body ::-webkit-scrollbar-thumb:hover {
+    background-color: #60bab5;
+}
+
+::-webkit-scrollbar-thumb:window-inactive, body ::-webkit-scrollbar-thumb:window-inactive {
+    background-color: #60bab5;
+}
+
+body {
+    overflow: scroll !important;
+    overflow-x: hidden !important;
+}
+
+.ui.tabular.menu .item {
+    font: 14px 'OpenSansRegular';
+    color: #000000;
+}
+
+.ui.tabular.menu .item.active {
+    font-weight: 600;
+}
+
+.pointer {
+    cursor: pointer;
+}
+

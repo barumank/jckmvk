@@ -1,0 +1,17 @@
+.searchContainer{
+    height: 120px;
+    padding: 18px !important;
+}
+
+.searchInput :global(.ui.input){
+    width: 541px;
+    height: 37px;
+}
+.searchInput :global(.ui.input) input{
+    font: 13px 'OpenSansRegular';
+    line-height: 33px;
+}
+
+.searchInput :global(.ui.input) input::placeholder{
+    color: #7c7c7c;
+}

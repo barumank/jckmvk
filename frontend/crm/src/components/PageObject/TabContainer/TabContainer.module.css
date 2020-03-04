@@ -1,0 +1,11 @@
+.menu:global(.ui.tabular.menu) :global(.item){
+    font: 14px 'OpenSansRegular';
+    color: #000000;
+    font-weight: 400;
+}
+.menu:global(.ui.tabular.menu){
+    margin-bottom: 28px;
+}
+.menu:global(.ui.tabular.menu) :global(.item.active){
+    font-weight: 600;
+}

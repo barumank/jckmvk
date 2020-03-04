@@ -1,0 +1,41 @@
+.container:global(.ui.segment){
+    width: 382px;
+    height: 274px;
+    padding: 16px;
+}
+
+.container :global(.upload) {
+    color: #ffffff;
+    font-weight: 700;
+    margin-top: 11px;
+}
+
+.container :global(.table i.icon) {
+    font-size: 20px;
+    color: #6f6f6d;
+}
+
+.container :global(.table .download.icon):hover {
+    color: #5fb9b5;
+    cursor: pointer;
+}
+.downloadFile{
+    width: 47px;
+}
+.container :global(.table td):first-child {
+    display: flex;
+    align-items: center;
+}
+.container :global(.table) {
+    border-radius: 0;
+    border:1px solid #dededf;
+    border-right: none;
+}
+
+.container :global(.table td) {
+    font: 13px 'OpenSansRegular';
+}
+.header:global(.ui.header) {
+    font: 20px 'OpenSansSemiBold';
+    line-height: 20px;
+}

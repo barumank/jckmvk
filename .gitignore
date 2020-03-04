@@ -1,0 +1,20 @@
+# Created by .ignore support plugin (hsz.mobi)
+.idea/*
+
+# Backend
+backend/.phalcon/*
+!backend/.phalcon/.gitkeep
+backend/cache/*
+!backend/cache/.gitkeep
+backend/public/upload
+backend/vendor
+backend/config/connection.php
+
+# Frontend
+frontend/node_modules/
+
+# Environment
+environment
+
+logger/.idea/*
+logger/settings.json

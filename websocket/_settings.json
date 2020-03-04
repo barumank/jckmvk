@@ -1,0 +1,16 @@
+{
+  "port": "8083",
+  "rabbitDsn": "amqp://root:1213art@localhost:5672",
+
+  "workers": {
+    "exchange": "exchange_backend",
+    "exchangeType": "direct",
+    "routingKey": "backend"
+  },
+  "ws": {
+    "exchange": "exchange_ws",
+    "exchangeType": "direct",
+    "routingKey": "ws",
+    "queueName": "queue_websocket"
+  }
+}

@@ -1,0 +1,16 @@
+{
+  "socket": {
+    "port": 8088,
+    "type": "tcp"
+  },
+  "mySql": {
+    "host": "127.0.0.1",
+    "port": 3308,
+    "user": "root",
+    "password": "ryer45glWOJGYGM",
+    "database": "bk_partner",
+    "tableName": "log",
+    "insertSize": 400,
+    "insertTimeOut": 10
+  }
+}

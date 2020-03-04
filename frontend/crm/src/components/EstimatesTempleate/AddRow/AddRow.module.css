@@ -1,0 +1,35 @@
+
+.contentIcon:global(.ui.popup) {
+    padding: 0;
+    border: none;
+    box-shadow: none;
+    margin: 0;
+    background: none;
+    display: flex !important;
+    flex-direction: row;
+    align-items: center;
+    cursor: pointer;
+}
+.contentIcon :global(i.icon) {
+    height: 22px !important;
+    font-size: 19px;
+    color: #60bab5;
+    opacity: 1;
+}
+
+.contentIcon:hover .contentButton:global(.button.ui){
+    display: flex;
+
+}
+.contentButton:global(.button.ui) {
+    font-weight:bold;
+    background-color: #60bab5;
+    color: #ffffff;
+    font-size: 12px;
+    padding: 0 5px;
+    height: 22px;
+    width: 142px;
+    justify-content: center;
+    align-items: center;
+    display: none;
+}

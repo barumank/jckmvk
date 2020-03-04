@@ -1,0 +1,108 @@
+.container:global(.ui.segment){
+    padding: 14px 14px 16px;
+    margin: 0;
+    width: 380px;
+    height: 264px;
+    max-width: 380px;
+    background-color: #ffffff;
+}
+
+.item{
+    display: flex;
+    align-items: flex-start;
+    height: 110px;
+}
+
+.image:global(.ui.image){
+    max-width: 110px;
+    max-height: 110px;
+}
+
+.itemContent{
+    width: 225px;
+    margin: 0 0 0 14px;
+}
+
+.itemContent :global(.grid){
+    margin: 0;
+}
+.itemContent :global(.grid .row){
+    padding: 0;
+}
+.itemContent :global(.grid .row .column){
+    padding: 0;
+    line-height: 19px;
+    color: #000000;
+}
+
+.itemContent :global(.grid .row .column:first-child){
+    font: 12px 'OpenSansRegular';
+    font-weight: 400;
+    width: 70px;
+}
+.itemContent :global(.grid .row .column:last-child){
+    font: 13px 'OpenSansBold';
+    font-weight: 700;
+    width: 143px;
+    margin-left: 12px;
+}
+
+.green{
+    color: #21ba45 !important;
+}
+
+.statusGroup{
+    max-width: 270px;
+    float: left;
+}
+.statusGroup :global(.ui.button){
+    margin: 0 3px 0 0 !important;
+}
+
+.control :global(.ui.button){
+    font: 11px 'OpenSansRegular';
+    color: #000000;
+    margin: 0;
+    margin-left: 5px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 0 9px;
+    height: 30px;
+}
+
+.controlContainer{
+    float: right;
+    display: flex;
+}
+
+.control .smile:global(.ui.button){
+    width: 30px;
+    padding: 0;
+}
+.control .smile:global(.ui.button) :global(.icon){
+    font-size: 18px;
+}
+
+.dividerTop:global(.ui.divider){
+    margin: 11px 0 14px
+}
+
+.dividerBottom:global(.ui.divider){
+    margin: 32px 0  14px;
+}
+
+.control :global(.ui.button) :global(.icon){
+    margin: 0 !important;
+    height: 18px;
+}
+.objectName{
+    display: flex;
+    align-items: center;
+    margin-bottom: 12px !important;
+}
+
+.objectIcon{
+    color: #21b945;
+    font-size: 18px !important;
+}

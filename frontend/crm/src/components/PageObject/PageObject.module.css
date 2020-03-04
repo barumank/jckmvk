@@ -1,0 +1,21 @@
+.panel:global(.ui.segment){
+    padding: 18px;
+}
+
+.buttonContainer{
+    display: flex;
+}
+.buttonContainer :global(.button){
+    margin-right: 13px;
+    display: flex;
+    align-items: center;
+
+}
+.buttonContainer :global(.ui.button) :global(.icon){
+    height: 23px !important;
+    font-size: 23px;
+}
+
+.container{
+    padding: 17px 16px 16px 16px !important;
+}

@@ -1,0 +1,5 @@
+.editUserModal:global(.ui.modal) :global(.ui.segment){
+    border: none;
+    box-shadow: none;
+    min-height: 155px;
+}

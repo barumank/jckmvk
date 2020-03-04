@@ -1,0 +1,21 @@
+version: "3.5"
+
+services:
+
+  node:
+    build: ./node
+    ports:
+      - 3080:3080
+    networks:
+      - mvk_crm
+    restart: always
+    volumes:
+      - ../../:/var/www/mvk_crm
+    environment:
+      USER_ID: USER_ID
+      USER_GROUP_ID: USER_GROUP_ID
+
+
+networks:
+  mvk_crm:
+    name: mvk_crm

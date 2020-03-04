@@ -1,0 +1,25 @@
+.header {
+    display: flex;
+    justify-content: space-between;
+    height: 30px;
+}
+.header :global(h4.ui.header){
+    font-size: 20px;
+}
+.table:global(.ui.table) {
+    font: 14px 'OpenSansRegular';
+    margin-bottom: 0;
+}
+.table:global(.ui.table thead th) {
+    font: 14px 'OpenSansRegular';
+}
+.headerControl :global(.button) {
+    padding: 0;
+    width: 30px;
+    height: 30px;
+}
+.headerControl :global(.button) :global(i.icon) {
+    margin: 0 !important;
+    height: 18px !important;
+    font-size: 19px;
+}

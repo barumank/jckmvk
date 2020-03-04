@@ -1,0 +1,17 @@
+components:
+  schemas:
+    User:
+      type: object
+      properties:
+        id:
+          type: integer
+          description: 'id пользователя'
+          example: 1
+        name:
+          type: string
+          description: 'Имя пользователя'
+          example: 'Иванов Иван'
+        email:
+          type: string
+          description: 'Email пользователя'
+          example: 'test@test.com'

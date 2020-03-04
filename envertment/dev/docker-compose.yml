@@ -1,0 +1,98 @@
+version: "3.5"
+
+services:
+  nginx:
+    image: nginx:alpine
+    ports:
+      - 8080:80
+      - 8082:82
+    networks:
+      - mvk_crm
+    restart: always
+    depends_on:
+      - php-fpm
+    volumes:
+      - ./nginx/:/etc/nginx/conf.d/
+      - ../../:/var/www/mvk_crm
+
+  php-fpm:
+    build: ./php-fpm
+    networks:
+      - mvk_crm
+    restart: always
+    depends_on:
+      - mysql
+      - redis
+    volumes:
+      - ../../:/var/www/mvk_crm
+      - ./php-fpm/config/custom.ini:/usr/local/etc/php/conf.d/custom.ini
+    environment:
+      XDEBUG_CONFIG: remote_host=${XDEBUG_REMOTE_HOST} remote_enable=${XDEBUG_REMOTE_ENABLE} remote_port=${XDEBUG_REMOTE_PORT}
+      USER_ID: USER_ID
+      USER_GROUP_ID: USER_GROUP_ID
+
+  php-cli:
+    build: ./php-cli
+    networks:
+      - mvk_crm
+    restart: always
+    depends_on:
+      - mysql
+      - redis
+    volumes:
+      - ../../:/var/www/mvk_crm
+      - ./php-cli/config/custom.ini:/usr/local/etc/php/conf.d/custom.ini
+    environment:
+      XDEBUG_CONFIG: remote_host=${XDEBUG_REMOTE_HOST} remote_enable=${XDEBUG_REMOTE_ENABLE} remote_port=${XDEBUG_REMOTE_PORT}
+      USER_ID: USER_ID
+      USER_GROUP_ID: USER_GROUP_ID
+
+  logger:
+    build: ./logger
+    networks:
+      - mvk_crm
+    restart: always
+    depends_on:
+      - mysql
+    volumes:
+      - ../../:/var/www/mvk_crm
+
+  node:
+    build: ./node
+    ports:
+      - 3080:3080
+    networks:
+      - mvk_crm
+    restart: always
+    volumes:
+      - ../../:/var/www/mvk_crm
+    environment:
+      USER_ID: USER_ID
+      USER_GROUP_ID: USER_GROUP_ID
+
+  redis:
+    image: redis:4.0.14-alpine
+    networks:
+      - mvk_crm
+    restart: always
+    volumes:
+      - ./var/redis:/data
+
+  mysql:
+    image: mysql:5.7.25
+    networks:
+      - mvk_crm
+    volumes:
+      - ./mysql/sql-scripts/create_scheme.sql:/docker-entrypoint-initdb.d/create_scheme.sql
+      - ./var/mysql:/var/lib/mysql
+      - ./mysql/config:/etc/mysql/conf.d
+    command: --default-authentication-plugin=mysql_native_password
+    restart: always
+    environment:
+      MYSQL_ROOT_PASSWORD: testdbmysqlpass
+    ports:
+      - 3308:3306
+
+networks:
+  mvk_crm:
+    name: mvk_crm

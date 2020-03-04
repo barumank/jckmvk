@@ -1,0 +1,113 @@
+
+:global(.grid .row) .leftColumn:global(.column.wide) {
+    width: 347px !important;
+    padding: 0 !important;
+    display: flex;
+    flex-direction: column;
+
+}
+
+.leftColumn > * {
+    margin-top: 20px;
+}
+
+.leftColumn > :first-child {
+    margin-top: 0;
+}
+
+:global(.grid .row) .rightColumn:global(.column.wide) {
+    width: 800px !important;
+    margin-left: 19px;
+    padding: 0 !important;
+}
+
+.container:global(.ui.grid) {
+    margin: 0 !important;
+    width: 100% !important;
+}
+
+.container:global(.ui.grid) :global(.row) {
+    padding: 0 !important;
+}
+
+.iconDeleteImage {
+    position: absolute;
+    z-index: 2;
+    top: 5px;
+    right: 5px;
+    margin: 0 !important;
+    color: #ffffff;
+    font-size: 18px !important;
+    cursor: pointer;
+
+}
+
+.imageBackground {
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    z-index: 1;
+    display: none;
+    background-color: #000000;
+    opacity: 0.3;
+
+}
+
+.imageMainBlock {
+    position: relative;
+}
+
+.imageMainBlock:hover .imageBackground,
+.imageDopBlock:hover .imageBackground {
+    display: block;
+}
+
+.addImageButton:global(.ui.button) {
+    line-height: 17px;
+    margin-top: 10px;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 345px;
+    height: 35px;
+}
+
+.addImageButton :global(.icon) {
+    font-size: 19px !important;
+}
+
+.dopImageContainer {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: flex-start;
+}
+
+.imageDopBlock {
+    position: relative;
+    width: 108px;
+    height: 89px;
+    margin: 10px 10px 0 0;
+}
+
+.imageDopBlock:nth-child(3n) {
+    margin-right: 0;
+}
+
+.imageDopBlock :global(img) {
+    max-width: 108px !important;
+    max-height: 89px !important;
+}
+
+:global(.ui.form) .statusGroup:global(.fields){
+    margin-top: 12px;
+    margin-bottom: 0;
+}
+.objectMap{
+    height: 330px;
+    margin-top: 50px;
+}
+.saveButton{
+    float: right;
+    margin-top: 20px !important;
+}

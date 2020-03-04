@@ -1,0 +1,39 @@
+.buttonContainer {
+    display: flex;
+    justify-content: space-between;
+}
+.buttonGroup{
+    display: flex;
+}
+
+.buttonGroup :global(.ui.button):last-child{
+    margin-right: 0;
+}
+
+.buttonContainer :global(.ui.button) {
+    font: 14px 'OpenSansSemiBold';
+    color: #ffffff;
+    display: flex;
+    align-items: center;
+    height: 36px;
+}
+.buttonContainer :global(.ui.button .icon) {
+    color: #ffffff;
+    font-size: 22px;
+}
+
+.addGroup:global(.ui.button) {
+    background-color: #60bab5;
+}
+
+.back:global(.ui.button) {
+    background-color: #60bab5;
+}
+
+.addProduct:global(.ui.button) {
+    background-color: #21ba45;
+}
+
+.attachAnalog:global(.ui.button) {
+    background-color: #6f6f6e;
+}

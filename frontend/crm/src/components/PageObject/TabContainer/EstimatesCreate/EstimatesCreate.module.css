@@ -1,0 +1,47 @@
+.control{
+    display: flex;
+    justify-content: space-between;
+    margin: 5px 0 29px 0;
+}
+
+.control>*{
+    display: flex;
+    flex-direction: row;
+}
+
+.control :global(.ui.button .icon){
+    font-size: 19px;
+}
+
+.control :global(.ui.button){
+   display: flex;
+    align-items: center;
+    line-height: 18px;
+}
+
+.buttonCreateOffer:global(.ui.button){
+    background-color: #6f6f6e;
+    color: #ffffff;
+}
+
+.buttonCreateOffer:global(.ui.button) :global(.icon){
+    color: #ffffff;
+}
+
+.templateContainer>:global(.colorItem),
+.templateContainer>:global(.colorItem) :global(.colorItem){
+    background-color: #e0f3f2;
+}
+.templateContainer>:global(.colorItem) :global(.buttonAddRow),
+.templateContainer>:global(.colorItem) :global(.buttonAddRow):focus{
+    background-color: #60bab5;
+}
+
+.templateContainer>:global(.colorItem):nth-child(even),
+.templateContainer>:global(.colorItem):nth-child(even) :global(.colorItem){
+    background-color: #e0e8f3;
+}
+.templateContainer>:global(.segment):nth-child(even) :global(.buttonAddRow),
+.templateContainer>:global(.segment):nth-child(even) :global(.buttonAddRow):focus{
+    background-color: #889fbe;
+}

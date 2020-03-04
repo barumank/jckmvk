@@ -1,0 +1,5 @@
+.container{
+    width: 1200px !important;
+    min-width: 1200px !important;
+    flex: 1 0 auto;
+}

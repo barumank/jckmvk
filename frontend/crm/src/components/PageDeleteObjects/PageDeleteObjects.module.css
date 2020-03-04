@@ -1,0 +1,43 @@
+.searchContainer{
+    height: 120px;
+    padding: 17px 17px 21px;
+}
+
+.searchInput :global(.ui.input){
+    width: 541px;
+    height: 37px;
+}
+.searchInput :global(.ui.input) input{
+    font: 13px 'OpenSansRegular';
+    line-height: 33px;
+}
+
+.searchInput :global(.ui.input) input::placeholder{
+    color: #7c7c7c;
+}
+
+.collection:global(.ui.segment){
+    background: none;
+    border: none;
+    box-shadow: none;
+    padding: 0;
+}
+
+.collection>:global(.ui.segment){
+    float: left;
+    margin-right: 30px !important;
+}
+
+.collection>:global(.ui.segment):nth-child(3n){
+    margin-right: 0 !important;
+}
+
+@media screen and (max-width: 1214px) {
+    .collection>:global(.ui.segment):nth-child(3n){
+        margin-right: 30px !important;
+    }
+}
+
+.collection:global(.ui.segment) :global(.ui.segment) {
+    margin-bottom: 30px;
+}

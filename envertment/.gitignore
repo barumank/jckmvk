@@ -1,0 +1,8 @@
+# Created by .ignore support plugin (hsz.mobi)
+.idea/
+dev/.env
+prod/.env
+dev/var/*
+!dev/var/.gitkeep
+prod/var/*
+!prod/var/.gitkeep

@@ -1,0 +1,6 @@
+.categoryContainer:global(.ui.segment ){
+    width: 574px;
+    padding: 0;
+    border: none;
+    box-shadow: none;
+}

@@ -1,0 +1,14 @@
+:global(.ui.grid)>:global(.row)>.leftColumn{
+    display: flex;
+    flex-direction: column;
+}
+.uploadPhoto:global(.ui.button){
+    margin-top: 10px;
+    margin-right: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.uploadPhoto :global(.icon) {
+    font-size: 19px !important;
+}

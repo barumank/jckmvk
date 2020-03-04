@@ -1,0 +1,7 @@
+.table:global(.ui.table) {
+    font: 14px 'OpenSansRegular';
+    margin-bottom: 0;
+}
+.table:global(.ui.table thead th) {
+    font: 14px 'OpenSansRegular';
+}

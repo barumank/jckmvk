@@ -1,0 +1,96 @@
+.container{
+    height: 104px;
+    width: 1200px !important;
+    min-width: 1200px !important;
+}
+
+.header{
+    flex: 0 0 auto;
+    background-color: #ffffff !important;
+}
+
+.menuItem{
+    font: 16px 'OpenSansRegular';
+    padding: 29px 0 !important;
+    margin-left: 46px !important;
+}
+
+.menuRight{
+    width: 409px;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.button{
+    font: 12px 'OpenSansRegular' !important;
+    padding: 0 8px !important;
+
+}
+.button :global(i){
+    font-size: 14px;
+}
+:global(.ui.basic) .button:global(.button.button){
+    color: #000000 !important;
+    display: flex;
+    align-items: center;
+}
+
+.buttonGroup{
+    height: 90px;
+    width: 173px;
+}
+
+.logo{
+    width: 148px;
+    height: 59px;
+}
+.logoContainer{
+    width: 148px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+.user{
+    display: flex;
+    justify-content: space-between;
+    width: 215px;
+    height: 104px;
+    padding: 0 !important;
+
+}
+/* аватарка пользователя*/
+.user :global(.image.circular){
+    width: 89px;
+}
+
+/*пораметры пользователя*/
+.user :global(.content){
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    /*align-self:flex-start;*/
+    height: 80px;
+}
+.user :global(.content .meta){
+    /*margin-top: 1px;*/
+    font: 16px 'OpenSansRegular' !important;
+    color: #000000;
+}
+
+.user :global(.ui.button){
+    margin-top: 9px;
+    font: 14px 'OpenSansRegular' !important;
+    height: 26px;
+    color: #ffffff;
+    background-color: #6f6f6e;
+    display: flex;
+    align-items: center;
+    padding: 0 15px;
+    width: 107px;
+}
+.user :global(.ui.button .icon){
+    height: 15px;
+}
+
+
+

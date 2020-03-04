@@ -1,0 +1,35 @@
+/*
+.tableContainer{
+    height: 400px;
+    width: 540px;
+    overflow: scroll;
+    overflow-x: hidden!important;
+}
+*/
+
+
+
+.tableContainer:global(.ui.selectable.table tbody tr:hover),
+.tableContainer:global(.ui.table tbody tr td.selectable:hover){
+    background-color: #e0f3f2 !important;
+}
+.tableContainer:global( tbody tr:nth-child(2n)){
+    background-color: #f6f6f6;
+}
+
+.tableContainer:global(table){
+    font: 13px 'OpenSansRegular';
+}
+
+.colTableId{
+    width: 40px;
+}
+.colTableName{
+    width: 180px;
+}
+
+.label{
+    font: 20px 'OpenSansSemiBold';
+    font-weight: 600;
+    color: #000000;
+}

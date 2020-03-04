@@ -1,0 +1,58 @@
+.viewItem:hover {
+    background-color: #e0f3f2;
+    border-color: #e0f3f2;
+}
+
+.viewItem {
+    height: 38px;
+    padding: 10px !important;
+    box-sizing: border-box;
+    border: solid 1px #fff;
+    border-radius: 3px;
+}
+.viewItem :global(.header){
+    font:14px 'OpenSansSemiBold' !important;
+}
+.viewItem.select {
+    border: solid 1px #60bab5;
+    background-color: #e0f3f2;
+}
+.viewItem.blocked {
+    border: solid 1px #bebebe;
+    background-color: #e0e1e2;
+}
+
+.viewItem :global(i) {
+    font-size: 22px;
+    color: #6f6f6d;
+}
+
+.buttonOpenDir {
+    display: none;
+    position: relative;
+    top: -6px;
+    padding-top: 6px;
+    vertical-align: top;
+    text-align: center;
+    border-radius: 3px;
+}
+.buttonOpenDir :global(i){
+    margin: 0;
+}
+.buttonOpenDir:hover{
+    background-color: #e0e1e2;
+}
+.viewItem:hover .buttonOpenDir{
+    display: table-cell;
+}
+
+.breadcrumb,.breadcrumb :global(.active.section){
+    font:14px 'OpenSansSemiBold' !important;
+}
+
+.breadcrumb>:global(i){
+    font-size: 17px !important;
+}
+
+
+
