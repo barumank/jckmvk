@@ -4,10 +4,12 @@ import style from './PageProduct.module.css'
 import {setPath} from '../components/Breadcrumb/reducer'
 import {Button, Form, Grid, Header, Icon, Image, Segment} from "semantic-ui-react";
 import AnalogsTemplate from "./AnalogsTemplate/AnalogsTemplate";
+import ProductForm from "./ProductForm/ProductForm";
+import {submit} from "redux-form";
 
 const PageProduct = (props) => {
 
-    const {onSetPath} = props;
+    const {onSetPath, onSave} = props;
     useEffect(() => {
         onSetPath([
             {link: '/', label: 'Главная', active: false},
@@ -23,7 +25,7 @@ const PageProduct = (props) => {
                     <Header as='h4'>Товар</Header>
                     <div className={style.buttonGroup}>
                         <Button className={style.attachAnalog}><Icon name='attach'/> Привязать аналог</Button>
-                        <Button className={style.saveProduct}>Сохранить</Button>
+                        <Button className={style.saveProduct} onClick={onSave}>Сохранить</Button>
                     </div>
                 </div>
 
@@ -42,34 +44,7 @@ const PageProduct = (props) => {
                                 </Button>
                             </div>
                             <div>
-                                <Form>
-                                    <Form.Group widths='equal'>
-                                        <Form.Input fluid label='Название товара' placeholder='Название товара'/>
-                                    </Form.Group>
-                                    <Form.Group widths='equal'>
-                                        <Form.Select fluid label='Товарная группа' options={[]}
-                                                     placeholder='Товарная группа'/>
-                                    </Form.Group>
-                                    <Form.Group widths='equal'>
-                                        <Form.Input fluid label='Артикул' placeholder='Артикул'/>
-                                    </Form.Group>
-                                    <Form.Group widths='equal'>
-                                        <Form.Input fluid label='Бренд' placeholder='Бренд'/>
-                                    </Form.Group>
-                                    <Form.Group widths='equal'>
-                                        <Form.Input fluid label='РРЦ' placeholder='РРЦ'/>
-                                    </Form.Group>
-                                    <Form.Group widths='equal'>
-                                        <Form.Input fluid label='Скидка' placeholder='Скидка'/>
-                                    </Form.Group>
-                                    <Form.Group widths='equal'>
-                                        <Form.Input fluid label='Цена со скидкой' placeholder='Цена со скидкой'/>
-                                    </Form.Group>
-                                    <Form.Group widths='equal'>
-                                        <Form.Select fluid label='Свойство аналогичности' options={[]}
-                                                     placeholder='Свойство аналогичности'/>
-                                    </Form.Group>
-                                </Form>
+                                <ProductForm />
                             </div>
                         </Grid.Column>
                         <Grid.Column width={12} className={style.rightColumn}>
@@ -91,6 +66,9 @@ export default connect(
     dispatch => ({
         onSetPath(list) {
             dispatch(setPath(list));
+        },
+        onSave: () => {
+            dispatch(submit('createProductForm'));
         }
     })
 )(PageProduct);

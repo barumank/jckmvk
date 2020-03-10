@@ -72,4 +72,12 @@ class ProductsController extends Controller
         $response['products'] = $this->productService->getProducts();
         $this->jsonResponse->sendSuccess($response);
     }
+
+    /**
+     * @AclRoles(admin,user)
+     */
+    public function SaveAction()
+    {
+        var_dump($this->request->getPost('name'));
+    }
 }
