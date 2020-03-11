@@ -25,7 +25,7 @@ let ProductForm = (props) => {
                 options={[]}
             />
             <Field
-                name="artikul"
+                name="vendor_code"
                 component={Input}
                 label="Артикул"
                 type="text"
@@ -53,7 +53,7 @@ let ProductForm = (props) => {
                 placeholder="Скидка"
             />
             <Field
-                name="price_discount"
+                name="amount"
                 component={Input}
                 label="Цена со скидкой"
                 type="text"

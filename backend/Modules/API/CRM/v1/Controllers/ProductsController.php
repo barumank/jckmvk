@@ -4,8 +4,12 @@
 namespace Backend\Modules\API\CRM\v1\Controllers;
 
 
+use Backend\Library\RequestException;
+use Backend\Models\MySQL\DAO\Product;
 use Backend\Models\MySQL\DAO\ProductCategory;
 use Backend\Modules\API\CRM\v1\Controller;
+use Backend\Modules\API\CRM\v1\Validations\ProductValidation;
+use Exception;
 
 class ProductsController extends Controller
 {
@@ -78,6 +82,34 @@ class ProductsController extends Controller
      */
     public function SaveAction()
     {
-        var_dump($this->request->getPost('name'));
+        try {
+            if (!$this->request->isPost()) {
+                return $this->jsonResponse->sendError('Не верный запрос');
+            }
+            $post = $this->request->getPost();
+            $userId = $this->auth->getIdentity('user_id');
+            $validation = new ProductValidation();
+            $messages = $validation->validate($post);
+            if ($messages->count() > 0) {
+                throw (new RequestException('Ошибка'))->setContext($messages);
+            }
+            $product = new Product();
+            $product->setUserId($userId);
+            $product->setName($validation->getValue('name'));
+            $product->setAmount($validation->getValue('amount'));
+            $product->setVendorCode($validation->getValue('vendor_code'));
+            $product->setRrc($validation->getValue('rrc'));
+            $product->setDiscount($validation->getValue('discount'));
+            $product->setHash('fd');
+            if (!$product->save()) {
+                throw new RequestException('Ошибка сохранения');
+            }
+        } catch (RequestException $e) {
+            $messages = $e->getContext();
+            return $this->jsonResponse->sendError($e->getMessage(), $messages);
+        } catch (Exception $e) {
+            return $this->jsonResponse->sendError($e->getMessage());
+        }
+        return $this->jsonResponse->sendSuccess();
     }
 }
