@@ -5,6 +5,11 @@ namespace Backend\Models\MySQL\Models;
 class Product extends \Phalcon\Mvc\Model
 {
     /**
+     * Типы товаров
+     */
+    const TYPE_BASE = 0;
+    const TYPE_CUSTOM = 1;
+    /**
      *
      * @var integer
      */

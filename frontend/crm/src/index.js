@@ -12,6 +12,7 @@ import pageDeleteObjects from './components/PageDeleteObjects/reducer'
 import pageObject from './components/PageObject/reducer'
 import AuthReducer from './components/components/Auth/reducer'
 import pageAuth from './components/PageAuth/reducer'
+import pageProduct from './components/PageProduct/reducer'
 import pageUsers from './components/PageUsers/reducer'
 import pageOrganization from './components/PageOrganization/reducer'
 import pageUserSettings from './components/PageUserSettings/reducer'
@@ -31,6 +32,7 @@ let reducers = {
     pageUsers,
     pageOrganization,
     pageUserSettings,
+    pageProduct
 };
 
 let storeFactory = (initialState = {}) => applyMiddleware(thunk)(createStore)(combineReducers(reducers), initialState);

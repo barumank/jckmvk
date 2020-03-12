@@ -7,6 +7,7 @@ namespace Backend\Modules\API\CRM\v1\Controllers;
 use Backend\Library\RequestException;
 use Backend\Models\MySQL\DAO\Product;
 use Backend\Models\MySQL\DAO\ProductCategory;
+use Backend\Models\MySQL\DAO\User;
 use Backend\Modules\API\CRM\v1\Controller;
 use Backend\Modules\API\CRM\v1\Validations\ProductValidation;
 use Exception;
@@ -88,6 +89,10 @@ class ProductsController extends Controller
             }
             $post = $this->request->getPost();
             $userId = $this->auth->getIdentity('user_id');
+            $productType = Product::TYPE_BASE;
+            if ($this->auth->getIdentity('role') === User::ROLE_USER) {
+                $productType = Product::TYPE_CUSTOM;
+            }
             $validation = new ProductValidation();
             $messages = $validation->validate($post);
             if ($messages->count() > 0) {
@@ -100,7 +105,8 @@ class ProductsController extends Controller
             $product->setVendorCode($validation->getValue('vendor_code'));
             $product->setRrc($validation->getValue('rrc'));
             $product->setDiscount($validation->getValue('discount'));
-            $product->setHash('fd');
+            $product->setType($productType);
+            $product->setHash(' ');
             if (!$product->save()) {
                 throw new RequestException('Ошибка сохранения');
             }

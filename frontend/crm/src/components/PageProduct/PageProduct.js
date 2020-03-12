@@ -2,21 +2,27 @@ import React, {useEffect} from 'react'
 import {connect} from 'react-redux'
 import style from './PageProduct.module.css'
 import {setPath} from '../components/Breadcrumb/reducer'
-import {Button, Form, Grid, Header, Icon, Image, Segment} from "semantic-ui-react";
+import {Button, Form, Grid, Header, Icon, Image, Message, Segment} from "semantic-ui-react";
 import AnalogsTemplate from "./AnalogsTemplate/AnalogsTemplate";
 import ProductForm from "./ProductForm/ProductForm";
-import {submit} from "redux-form";
+import {isSubmitting, submit} from "redux-form";
+import {isSave} from "./selectors";
+import {setIsSaveProduct} from "./reducer";
+import RegistrationForm from "../PageAuth/Registration/RegistrationForm/RegistrationForm";
 
 const PageProduct = (props) => {
 
-    const {onSetPath, onSave} = props;
+    const {onSetPath, onSave, isSave, setIsSaveProduct} = props;
     useEffect(() => {
         onSetPath([
             {link: '/', label: 'Главная', active: false},
             {link: '/products', label: 'Товары', active: false},
             {link: '/product', label: 'Товар', active: true},
         ]);
-    });
+        if (isSave) {
+            return () => setIsSaveProduct(false);
+        }
+    },[isSave]);
 
     return (
         <>
@@ -44,7 +50,13 @@ const PageProduct = (props) => {
                                 </Button>
                             </div>
                             <div>
-                                <ProductForm />
+                                {isSave ? (
+                                    <Message positive>
+                                        <Message.Header>Товар успешно сохранен!</Message.Header>
+                                    </Message>
+                                ) : (
+                                    <ProductForm/>
+                                )}
                             </div>
                         </Grid.Column>
                         <Grid.Column width={12} className={style.rightColumn}>
@@ -61,14 +73,17 @@ const PageProduct = (props) => {
     );
 };
 
-export default connect(
-    state => ({}),
+export default connect(state => ({
+        submitting: isSubmitting('createProductForm')(state),
+        isSave: isSave(state),
+    }),
     dispatch => ({
         onSetPath(list) {
             dispatch(setPath(list));
         },
         onSave: () => {
             dispatch(submit('createProductForm'));
-        }
+        },
+        setIsSaveProduct,
     })
 )(PageProduct);

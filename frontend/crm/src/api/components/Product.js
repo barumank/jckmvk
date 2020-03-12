@@ -68,12 +68,7 @@ export default class Product {
             self.client
                 .post(url, data)
                 .then((response) => {
-                    console.log(response);
-                    if (response.data.status === 'ok') {
-                        resolve(response.data.data.user);
-                        return;
-                    }
-                    resolve(null);
+                    resolve(response.data);
                 });
         });
     }

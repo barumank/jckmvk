@@ -4,11 +4,12 @@ import {Field, reduxForm, SubmissionError} from 'redux-form';
 import {connect} from "react-redux";
 import Input from "../../components/FormElements/Input";
 import Select from "../../components/FormElements/Select";
-import {setCurrentUser} from "../../components/Auth/reducer";
+import {setIsSaveProduct} from "./../reducer";
+
 let ProductForm = (props) => {
-    const {handleSubmit} = props;
+    const {handleSubmit, submitting} = props;
     return (
-        <Form onSubmit={handleSubmit}>
+        <Form onSubmit={handleSubmit} loading={submitting}>
             <Field
                 name="name"
                 component={Input}
@@ -79,6 +80,7 @@ ProductForm = connect(null,(dispatch)=>({
     onSubmit(values) {
         return appApi.product.save(values).then((response) => {
             if (response.status === 'ok') {
+                dispatch(setIsSaveProduct(true));
                 return;
             }
             throw new SubmissionError({
