@@ -61,4 +61,16 @@ export default class Product {
         });
     }
 
+    save(data) {
+        let self = this;
+        let url = `/api/crm/v1/products/save`;
+        return new Promise((resolve, reject) => {
+            self.client
+                .post(url, data)
+                .then((response) => {
+                    resolve(response.data);
+                });
+        });
+    }
+
 }

@@ -66,6 +66,11 @@ class User extends \Phalcon\Mvc\Model
     protected $status;
 
     /**
+     * @var string
+     */
+    protected $hash;
+
+    /**
      * Method to set the value of field id
      *
      * @param integer $id
@@ -293,6 +298,22 @@ class User extends \Phalcon\Mvc\Model
     public function getStatus()
     {
         return $this->status;
+    }
+
+    /**
+     * @return string
+     */
+    public function getHash()
+    {
+        return $this->hash;
+    }
+
+    /**
+     * @param string $hash
+     */
+    public function setHash(string $hash)
+    {
+        $this->hash = $hash;
     }
 
     /**

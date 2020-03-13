@@ -2,19 +2,27 @@ import React, {useEffect} from 'react'
 import {connect} from 'react-redux'
 import style from './PageProduct.module.css'
 import {setPath} from '../components/Breadcrumb/reducer'
-import {Button, Form, Grid, Header, Icon, Image, Segment} from "semantic-ui-react";
+import {Button, Form, Grid, Header, Icon, Image, Message, Segment} from "semantic-ui-react";
 import AnalogsTemplate from "./AnalogsTemplate/AnalogsTemplate";
+import ProductForm from "./ProductForm/ProductForm";
+import {isSubmitting, submit} from "redux-form";
+import {isSave} from "./selectors";
+import {setIsSaveProduct} from "./reducer";
+import RegistrationForm from "../PageAuth/Registration/RegistrationForm/RegistrationForm";
 
 const PageProduct = (props) => {
 
-    const {onSetPath} = props;
+    const {onSetPath, onSave, isSave, setIsSaveProduct} = props;
     useEffect(() => {
         onSetPath([
             {link: '/', label: 'Главная', active: false},
             {link: '/products', label: 'Товары', active: false},
             {link: '/product', label: 'Товар', active: true},
         ]);
-    });
+        if (isSave) {
+            return () => setIsSaveProduct(false);
+        }
+    },[isSave]);
 
     return (
         <>
@@ -23,7 +31,7 @@ const PageProduct = (props) => {
                     <Header as='h4'>Товар</Header>
                     <div className={style.buttonGroup}>
                         <Button className={style.attachAnalog}><Icon name='attach'/> Привязать аналог</Button>
-                        <Button className={style.saveProduct}>Сохранить</Button>
+                        <Button className={style.saveProduct} onClick={onSave}>Сохранить</Button>
                     </div>
                 </div>
 
@@ -42,34 +50,13 @@ const PageProduct = (props) => {
                                 </Button>
                             </div>
                             <div>
-                                <Form>
-                                    <Form.Group widths='equal'>
-                                        <Form.Input fluid label='Название товара' placeholder='Название товара'/>
-                                    </Form.Group>
-                                    <Form.Group widths='equal'>
-                                        <Form.Select fluid label='Товарная группа' options={[]}
-                                                     placeholder='Товарная группа'/>
-                                    </Form.Group>
-                                    <Form.Group widths='equal'>
-                                        <Form.Input fluid label='Артикул' placeholder='Артикул'/>
-                                    </Form.Group>
-                                    <Form.Group widths='equal'>
-                                        <Form.Input fluid label='Бренд' placeholder='Бренд'/>
-                                    </Form.Group>
-                                    <Form.Group widths='equal'>
-                                        <Form.Input fluid label='РРЦ' placeholder='РРЦ'/>
-                                    </Form.Group>
-                                    <Form.Group widths='equal'>
-                                        <Form.Input fluid label='Скидка' placeholder='Скидка'/>
-                                    </Form.Group>
-                                    <Form.Group widths='equal'>
-                                        <Form.Input fluid label='Цена со скидкой' placeholder='Цена со скидкой'/>
-                                    </Form.Group>
-                                    <Form.Group widths='equal'>
-                                        <Form.Select fluid label='Свойство аналогичности' options={[]}
-                                                     placeholder='Свойство аналогичности'/>
-                                    </Form.Group>
-                                </Form>
+                                {isSave ? (
+                                    <Message positive>
+                                        <Message.Header>Товар успешно сохранен!</Message.Header>
+                                    </Message>
+                                ) : (
+                                    <ProductForm/>
+                                )}
                             </div>
                         </Grid.Column>
                         <Grid.Column width={12} className={style.rightColumn}>
@@ -86,11 +73,17 @@ const PageProduct = (props) => {
     );
 };
 
-export default connect(
-    state => ({}),
+export default connect(state => ({
+        submitting: isSubmitting('createProductForm')(state),
+        isSave: isSave(state),
+    }),
     dispatch => ({
         onSetPath(list) {
             dispatch(setPath(list));
-        }
+        },
+        onSave: () => {
+            dispatch(submit('createProductForm'));
+        },
+        setIsSaveProduct,
     })
 )(PageProduct);
