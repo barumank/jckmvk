@@ -4,6 +4,8 @@ import {Menu, Header, Segment, Button, Dropdown, Input, Search, Icon} from "sema
 import {NavLink, Route, Switch} from "react-router-dom";
 import MainProduct from "./MainProduct/MainProduct";
 import AnalogProduct from "./AnalogProduct/AnalogProduct";
+import SearchProduct from "./componets/SearchProduct/SearchProduct";
+import SearchProductAnalog from "./componets/SearchProductAnalog/SearchProductAnalog";
 
 const PageAssociateAnalog = (props) => {
     const isActiveMainLink = (match, location) => {
@@ -17,11 +19,11 @@ const PageAssociateAnalog = (props) => {
                     <Menu.Item as={NavLink} isActive={isActiveMainLink} className={style.tabItemColumn}
                                to='/associate-analog'>
                         <div>Основной товар</div>
-                        <Search fluid/>
+                        <SearchProduct />
                     </Menu.Item>
                     <Menu.Item as={NavLink} className={style.tabItemColumn} to='/associate-analog/analog'>
                         <div>Товар анатлог</div>
-                        <Search fluid/>
+                        <SearchProductAnalog />
                     </Menu.Item>
                     <Menu.Item as={NavLink} className={style.tabItemColumn} to='/associate-analog/property'>
                         Свойство аналогичнсти

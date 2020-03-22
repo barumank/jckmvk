@@ -61,6 +61,26 @@ export default class Product {
         });
     }
 
+    getProductAttributes(productId) {
+        let self = this;
+        let params = `product_id=${productId}`;
+        return new Promise((resolve, reject) => {
+            self.client
+                .get('/api/crm/v1/products/get_product_attributes_by_id?' + params)
+                .then((response) => {
+                    let out = {
+                        productAttributes: []
+                    };
+                    if (!('data' in response.data)) {
+                        resolve([]);
+                        return;
+                    }
+                    out.productAttributes = response.data.productAttributes;
+                    resolve(out);
+                });
+        });
+    }
+
     save(data) {
         let self = this;
         let url = `/api/crm/v1/products/save`;

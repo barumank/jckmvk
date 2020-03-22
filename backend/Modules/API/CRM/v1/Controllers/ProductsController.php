@@ -7,6 +7,7 @@ namespace Backend\Modules\API\CRM\v1\Controllers;
 use Backend\Library\RequestException;
 use Backend\Models\MySQL\DAO\Product;
 use Backend\Models\MySQL\DAO\ProductCategory;
+use Backend\Models\MySQL\DAO\ProductToAttribute;
 use Backend\Models\MySQL\DAO\User;
 use Backend\Modules\API\CRM\v1\Controller;
 use Backend\Modules\API\CRM\v1\Validations\ProductValidation;
@@ -76,6 +77,27 @@ class ProductsController extends Controller
         $response['pagination'] = $this->productService->getPagination();
         $response['products'] = $this->productService->getProducts();
         $this->jsonResponse->sendSuccess($response);
+    }
+
+    public function GetProductAttributesByIdAction()
+    {
+        $response = [];
+        $productId = $this->request->getQuery('product_id', 'int');
+        if (empty($productId)) {
+            return $this->jsonResponse->sendError('Ошибка запроса');
+        }
+        $productPropertyBuilder = ProductToAttribute::findByProductIdList([$productId]);
+        /** @var ProductToAttribute[] $productAttributes */
+        $productAttributes = $productPropertyBuilder->getQuery()->execute();
+        $attributes = [];
+        foreach ($productAttributes as $attribute) {
+            if ($attribute->getValue()) {
+                $attributes['value'] = $attribute->getValue();
+                $attributes['id'] = $attribute->getId();
+            }
+        }
+        $response['productAttributes'] = $attributes;
+        return $this->jsonResponse->sendSuccess($response);
     }
 
     /**
