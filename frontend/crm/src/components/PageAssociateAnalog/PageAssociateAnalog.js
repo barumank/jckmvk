@@ -4,10 +4,13 @@ import {Menu, Header, Segment, Button, Dropdown, Input, Search, Icon} from "sema
 import {NavLink, Route, Switch} from "react-router-dom";
 import MainProduct from "./MainProduct/MainProduct";
 import AnalogProduct from "./AnalogProduct/AnalogProduct";
-import SearchProduct from "./componets/SearchProduct/SearchProduct";
-import SearchProductAnalog from "./componets/SearchProductAnalog/SearchProductAnalog";
+import SearchInputProduct from "./SearchInputProduct/SearchInputProduct";
+import SearchInputProductAnalog from "./SearchInputProductAnalog/SearchInputProductAnalog";
+import { connect } from 'react-redux';
+import {getPropertyDropdownShow} from './selectors';
 
 const PageAssociateAnalog = (props) => {
+    const { propertyDropdownShow } = props;
     const isActiveMainLink = (match, location) => {
         return ['/associate-analog', '/associate-analog/base'].includes(location.pathname)
     };
@@ -19,11 +22,11 @@ const PageAssociateAnalog = (props) => {
                     <Menu.Item as={NavLink} isActive={isActiveMainLink} className={style.tabItemColumn}
                                to='/associate-analog'>
                         <div>Основной товар</div>
-                        <SearchProduct />
+                        <SearchInputProduct />
                     </Menu.Item>
                     <Menu.Item as={NavLink} className={style.tabItemColumn} to='/associate-analog/analog'>
                         <div>Товар анатлог</div>
-                        <SearchProductAnalog />
+                        <SearchInputProductAnalog />
                     </Menu.Item>
                     <Menu.Item as={NavLink} className={style.tabItemColumn} to='/associate-analog/property'>
                         Свойство аналогичнсти
@@ -47,4 +50,11 @@ const PageAssociateAnalog = (props) => {
     );
 };
 
-export default PageAssociateAnalog;
+export default connect (
+    state => ({
+        propertyDropdownShow: getPropertyDropdownShow(state)
+    }),
+    dispatch => ({
+
+    })
+)(PageAssociateAnalog);
