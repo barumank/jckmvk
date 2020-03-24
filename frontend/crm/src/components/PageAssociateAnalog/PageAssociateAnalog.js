@@ -1,6 +1,6 @@
 import React from 'react'
 import style from './PageAssociateAnalog.module.css'
-import {Menu, Header, Segment, Button, Dropdown, Input, Search, Icon} from "semantic-ui-react";
+import {Menu, Header, Segment, Button, Dropdown, Input, Search, Icon, Form} from "semantic-ui-react";
 import {NavLink, Route, Switch} from "react-router-dom";
 import MainProduct from "./MainProduct/MainProduct";
 import AnalogProduct from "./AnalogProduct/AnalogProduct";
@@ -8,6 +8,8 @@ import SearchInputProduct from "./SearchInputProduct/SearchInputProduct";
 import SearchInputProductAnalog from "./SearchInputProductAnalog/SearchInputProductAnalog";
 import { connect } from 'react-redux';
 import {getPropertyDropdownShow} from './selectors';
+import DropdownAnalog from "./DropdownAnalog/DropdownAnalog";
+import {Field, reduxForm, SubmissionError} from 'redux-form'
 
 const PageAssociateAnalog = (props) => {
     const { propertyDropdownShow } = props;
@@ -29,7 +31,8 @@ const PageAssociateAnalog = (props) => {
                         <SearchInputProductAnalog />
                     </Menu.Item>
                     <Menu.Item as={NavLink} className={style.tabItemColumn} to='/associate-analog/property'>
-                        Свойство аналогичнсти
+                        <div>Свойство аналогичнсти</div>
+                        <DropdownAnalog />
                     </Menu.Item>
                     <Menu.Item>
                         <Button positive className={style.bindButton}>

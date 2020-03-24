@@ -1,6 +1,7 @@
 import {combineReducers} from "redux";
 import searchInputProduct from './SearchInputProduct/reducer';
 import searchInputProductAnalog from './SearchInputProductAnalog/reducer';
+import dropdownAnalog from './DropdownAnalog/reducer';
 import {createAction} from "redux-actions";
 
 const setPropertyDropdownShowAction = createAction('PageAssociateAnalog/setPropertyDropdownShowAction');
@@ -23,6 +24,7 @@ const reducer = (state = initialState, action) => {
 export default combineReducers({
     searchInputProduct,
     searchInputProductAnalog,
+    dropdownAnalog,
     main: reducer
 });
 

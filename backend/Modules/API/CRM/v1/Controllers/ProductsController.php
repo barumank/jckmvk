@@ -92,8 +92,10 @@ class ProductsController extends Controller
         $attributes = [];
         foreach ($productAttributes as $attribute) {
             if ($attribute->getValue()) {
-                $attributes['value'] = $attribute->getValue();
-                $attributes['id'] = $attribute->getId();
+                $attributes[] = [
+                    'value' => $attribute->getValue(),
+                    'id' => $attribute->getId()
+                ];
             }
         }
         $response['productAttributes'] = $attributes;

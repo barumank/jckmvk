@@ -75,7 +75,7 @@ export default class Product {
                         resolve([]);
                         return;
                     }
-                    out.productAttributes = response.data.productAttributes;
+                    out.productAttributes = response.data.data.productAttributes;
                     resolve(out);
                 });
         });

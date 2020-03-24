@@ -1,4 +1,5 @@
 import {createAction} from "redux-actions";
+import {setFetchAnalogProperty} from '../DropdownAnalog/reducer';
 
 const setIsLoadingAction = createAction('PageAssociateAnalog/SearchInputProduct/setIsLoadingAction');
 const setResultsAction = createAction('PageAssociateAnalog/SearchInputProduct/setResultsAction');
@@ -36,6 +37,7 @@ export const onSearchChange = (event, data) => (dispatch) => {
             let products = response.products.map(item => {
                 return {
                     title: item.name,
+                    id: item.id
                 }
             });
             dispatch(setResultsAction(products));
@@ -45,4 +47,7 @@ export const onSearchChange = (event, data) => (dispatch) => {
 
 export const onResultSelect = (event, {result}) => (dispatch) => {
     dispatch(setValueAction(result.title));
+    dispatch(setFetchAnalogProperty({
+        productId: result.id
+    }));
 };
