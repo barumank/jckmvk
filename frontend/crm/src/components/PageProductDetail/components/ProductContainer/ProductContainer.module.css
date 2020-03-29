@@ -1,0 +1,11 @@
+.productContainer:global(.ui.segment ){
+    height: 250px;
+    padding: 16px 16px 15px 16px;
+    border: 1px solid #e0e1e2;
+    margin: 0;
+    border-radius: 0;
+    background-color: #e0f3f2;
+}
+.tableContainer{
+    height: 300px;
+}

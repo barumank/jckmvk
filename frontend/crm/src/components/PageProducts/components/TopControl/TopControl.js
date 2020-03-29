@@ -20,7 +20,7 @@ const TopControl = (props) => {
                 {getBackButton()}
             </div>
             <div className={style.buttonGroup}>
-                <Button as={Link} to='/product' className={style.addProduct}><Icon name='plus circle'/> Добавить
+                <Button as={Link} to='/product/new' className={style.addProduct}><Icon name='plus circle'/> Добавить
                     товар</Button>
                 <Button as={Link} to='/associate-analog' className={style.attachAnalog}><Icon name='attach'/> Привязать
                     аналог</Button>

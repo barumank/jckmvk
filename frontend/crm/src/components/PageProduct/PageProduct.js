@@ -8,8 +8,7 @@ import ProductForm from "./ProductForm/ProductForm";
 import {isSubmitting, submit} from "redux-form";
 import {isSave} from "./selectors";
 import {setIsSaveProduct} from "./reducer";
-import RegistrationForm from "../PageAuth/Registration/RegistrationForm/RegistrationForm";
-
+import {Link} from "react-router-dom";
 const PageProduct = (props) => {
 
     const {onSetPath, onSave, isSave, setIsSaveProduct} = props;
@@ -17,7 +16,7 @@ const PageProduct = (props) => {
         onSetPath([
             {link: '/', label: 'Главная', active: false},
             {link: '/products', label: 'Товары', active: false},
-            {link: '/product', label: 'Товар', active: true},
+            {link: '/product/new', label: 'Товар', active: true},
         ]);
         if (isSave) {
             return () => setIsSaveProduct(false);
@@ -30,7 +29,7 @@ const PageProduct = (props) => {
                 <div className={style.topContainer}>
                     <Header as='h4'>Товар</Header>
                     <div className={style.buttonGroup}>
-                        <Button className={style.attachAnalog}><Icon name='attach'/> Привязать аналог</Button>
+                        <Button as={Link} to='/associate-analog' className={style.attachAnalog}><Icon name='attach'/> Привязать аналог</Button>
                         <Button className={style.saveProduct} onClick={onSave}>Сохранить</Button>
                     </div>
                 </div>

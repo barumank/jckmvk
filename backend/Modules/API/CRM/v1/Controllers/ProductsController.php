@@ -6,6 +6,7 @@ namespace Backend\Modules\API\CRM\v1\Controllers;
 
 use Backend\Library\RequestException;
 use Backend\Models\MySQL\DAO\AttributeGroup;
+use Backend\Models\MySQL\DAO\AttributeProduct;
 use Backend\Models\MySQL\DAO\Product;
 use Backend\Models\MySQL\DAO\ProductCategory;
 use Backend\Models\MySQL\DAO\ProductToAttribute;
@@ -82,6 +83,72 @@ class ProductsController extends Controller
         $this->jsonResponse->sendSuccess($response);
     }
 
+
+    public function GetProductSimilarAction() {
+        $fields = $this->request->getQuery('fields', null, []);
+        $filter = $this->request->getQuery('filter', null, []);
+        $include = $this->request->getQuery('include', null, []);
+        if (!empty($include)) {
+            $include = explode(',', $include);
+        }
+        $type = 0;
+        if (isset($filter['type'])) {
+            $type = (int)$this->filter->sanitize($filter['type'], 'int', 0);
+        }
+        $productId = null;
+        if (isset($filter['product_id'])) {
+            $productId = (int)$this->filter->sanitize($filter['product_id'], 'int');
+        }
+
+        $groupId = null;
+        if (isset($filter['group_id'])) {
+            $groupId = (int)$this->filter->sanitize($filter['group_id'], 'int');
+        }
+
+        $productColumns = '';
+        if (isset($fields['product'])) {
+            $productColumns = $fields['product'] ;
+        }
+        $productAttributeColumns = '';
+        if (isset($fields['productAttribute'])) {
+            $productAttributeColumns = $fields['productAttribute'];
+        }
+
+        $similarProducts = ProductSimilarGroup::find([
+            'product_id =:product_id: AND group_id = :group_id:',
+            'bind' => [
+                'product_id' => $productId,
+                'group_id' => $groupId
+            ]
+        ]);
+        $products = $productIdList = [];
+        foreach ($similarProducts as $similarProduct) {
+            $analog = $similarProduct->getProductAnalog();
+            $productIdList[] = $analog->getId();
+            $products[] = [
+                'id' => $analog->getId(),
+                'name' => $analog->getName()
+            ];
+        }
+        $this->productService
+            ->setProductIdList($productIdList)
+            ->setType($type)
+            ->setUserId($this->auth->getIdentity('user_id'))
+            ->setProductColumns($productColumns)
+            ->setProductAttributeColumns($productAttributeColumns);
+
+        $response = [];
+        if (in_array('productAttributes', $include)) {
+            $response['productAttributes'] = $this->productService->getProductAttributes();
+        }
+        if (in_array('attributeNames', $include)) {
+            $response['attributeNames'] = $this->productService->getAttributeNames();
+        }
+        $response['products'] = $products;
+        $this->jsonResponse->sendSuccess($response);
+
+    }
+
     public function GetProductAttributeGroupsAction()
     {
         $response = $groups = [];
@@ -156,7 +223,7 @@ class ProductsController extends Controller
             $productAnalog = new ProductSimilarGroup();
             $productAnalog->setProductId($validation->getValue('product_id'));
             $productAnalog->setAnalogId($validation->getValue('analog_id'));
-            $productAnalog->setGroupIp($validation->getValue('group_id'));
+            $productAnalog->setGroupId($validation->getValue('group_id'));
             if (!$productAnalog->save()) {
                 throw new RequestException('Ошибка сохранения');
             }
@@ -167,5 +234,19 @@ class ProductsController extends Controller
             return $this->jsonResponse->sendError($e->getMessage());
         }
         return $this->jsonResponse->sendSuccess();
+    }
+
+    public function GetProductAction()
+    {
+        $response = $result = [];
+        $productId = $this->request->get('product_id');
+        if ($productId) {
+            $product = Product::findFirst($productId);
+            if ($product) {
+                $result = $product->toArray();
+            }
+        }
+        $response['product'] = $result;
+        return $this->jsonResponse->sendSuccess($response);
     }
 }

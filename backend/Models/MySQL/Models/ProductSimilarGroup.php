@@ -27,7 +27,7 @@ class ProductSimilarGroup extends \Phalcon\Mvc\Model
      *
      * @var integer
      */
-    public $group_ip;
+    public $group_id;
 
     /**
      * Initialize method for model.
@@ -36,7 +36,7 @@ class ProductSimilarGroup extends \Phalcon\Mvc\Model
     {
         $this->setSchema("mvk_crm");
         $this->setSource("product_similar_group");
-        $this->belongsTo('group_ip', 'Backend\Models\MySQL\Models\AttributeGroup', 'id', ['alias' => 'AttributeGroup']);
+        $this->belongsTo('group_id', 'Backend\Models\MySQL\Models\AttributeGroup', 'id', ['alias' => 'AttributeGroup']);
         $this->belongsTo('product_id', 'Backend\Models\MySQL\Models\Product', 'id', ['alias' => 'Product']);
         $this->belongsTo('analog_id', 'Backend\Models\MySQL\Models\Product', 'id', ['alias' => 'ProductAnalog']);
     }
@@ -133,18 +133,18 @@ class ProductSimilarGroup extends \Phalcon\Mvc\Model
     /**
      * @return int
      */
-    public function getGroupIp(): int
+    public function getGroupId(): int
     {
-        return $this->group_ip;
+        return $this->group_id;
     }
 
     /**
-     * @param int $group_ip
+     * @param int $group_id
      * @return $this
      */
-    public function setGroupIp(int $group_ip)
+    public function setGroupId(int $group_id)
     {
-        $this->group_ip = $group_ip;
+        $this->group_id = $group_id;
 
         return $this;
     }
