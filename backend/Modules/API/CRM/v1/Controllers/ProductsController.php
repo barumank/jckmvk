@@ -5,11 +5,14 @@ namespace Backend\Modules\API\CRM\v1\Controllers;
 
 
 use Backend\Library\RequestException;
+use Backend\Models\MySQL\DAO\AttributeGroup;
 use Backend\Models\MySQL\DAO\Product;
 use Backend\Models\MySQL\DAO\ProductCategory;
 use Backend\Models\MySQL\DAO\ProductToAttribute;
 use Backend\Models\MySQL\DAO\User;
+use Backend\Models\MySQL\Models\ProductSimilarGroup;
 use Backend\Modules\API\CRM\v1\Controller;
+use Backend\Modules\API\CRM\v1\Validations\ProductSimilarGroupValidation;
 use Backend\Modules\API\CRM\v1\Validations\ProductValidation;
 use Exception;
 
@@ -79,26 +82,18 @@ class ProductsController extends Controller
         $this->jsonResponse->sendSuccess($response);
     }
 
-    public function GetProductAttributesByIdAction()
+    public function GetProductAttributeGroupsAction()
     {
-        $response = [];
-        $productId = $this->request->getQuery('product_id', 'int');
-        if (empty($productId)) {
-            return $this->jsonResponse->sendError('Ошибка запроса');
+        $response = $groups = [];
+        $attributeGroups = AttributeGroup::findByIdList([2, 17]);
+        foreach ($attributeGroups as $attributeGroup) {
+            $groups[] = [
+                'value' => $attributeGroup->getName(),
+                'id' => $attributeGroup->getId()
+            ];
+
         }
-        $productPropertyBuilder = ProductToAttribute::findByProductIdList([$productId]);
-        /** @var ProductToAttribute[] $productAttributes */
-        $productAttributes = $productPropertyBuilder->getQuery()->execute();
-        $attributes = [];
-        foreach ($productAttributes as $attribute) {
-            if ($attribute->getValue()) {
-                $attributes[] = [
-                    'value' => $attribute->getValue(),
-                    'id' => $attribute->getId()
-                ];
-            }
-        }
-        $response['productAttributes'] = $attributes;
+        $response['productAttributeGroups'] = $groups;
         return $this->jsonResponse->sendSuccess($response);
     }
 
@@ -132,6 +127,37 @@ class ProductsController extends Controller
             $product->setType($productType);
             $product->setHash(' ');
             if (!$product->save()) {
+                throw new RequestException('Ошибка сохранения');
+            }
+        } catch (RequestException $e) {
+            $messages = $e->getContext();
+            return $this->jsonResponse->sendError($e->getMessage(), $messages);
+        } catch (Exception $e) {
+            return $this->jsonResponse->sendError($e->getMessage());
+        }
+        return $this->jsonResponse->sendSuccess();
+    }
+
+    /**
+     * @AclRoles(admin,user)
+     */
+    public function SaveAnalogGroupAction()
+    {
+        try {
+            if (!$this->request->isPost()) {
+                return $this->jsonResponse->sendError('Не верный запрос');
+            }
+            $post = $this->request->getPost();
+            $validation = new ProductSimilarGroupValidation();
+            $messages = $validation->validate($post);
+            if ($messages->count() > 0) {
+                throw (new RequestException('Ошибка'))->setContext($messages);
+            }
+            $productAnalog = new ProductSimilarGroup();
+            $productAnalog->setProductId($validation->getValue('product_id'));
+            $productAnalog->setAnalogId($validation->getValue('analog_id'));
+            $productAnalog->setGroupIp($validation->getValue('group_id'));
+            if (!$productAnalog->save()) {
                 throw new RequestException('Ошибка сохранения');
             }
         } catch (RequestException $e) {

@@ -4,12 +4,10 @@ import {Menu, Header, Segment, Button, Dropdown, Input, Search, Icon, Form} from
 import {NavLink, Route, Switch} from "react-router-dom";
 import MainProduct from "./MainProduct/MainProduct";
 import AnalogProduct from "./AnalogProduct/AnalogProduct";
-import SearchInputProduct from "./SearchInputProduct/SearchInputProduct";
-import SearchInputProductAnalog from "./SearchInputProductAnalog/SearchInputProductAnalog";
 import { connect } from 'react-redux';
 import {getPropertyDropdownShow} from './selectors';
-import DropdownAnalog from "./DropdownAnalog/DropdownAnalog";
 import {Field, reduxForm, SubmissionError} from 'redux-form'
+import BindAnalogForm from './Form/BindAnalogForm';
 
 const PageAssociateAnalog = (props) => {
     const { propertyDropdownShow } = props;
@@ -20,26 +18,7 @@ const PageAssociateAnalog = (props) => {
         <>
             <Segment>
                 <Header as='h4'>Сопоставление аналогов</Header>
-                <Menu attached='top' tabular>
-                    <Menu.Item as={NavLink} isActive={isActiveMainLink} className={style.tabItemColumn}
-                               to='/associate-analog'>
-                        <div>Основной товар</div>
-                        <SearchInputProduct />
-                    </Menu.Item>
-                    <Menu.Item as={NavLink} className={style.tabItemColumn} to='/associate-analog/analog'>
-                        <div>Товар анатлог</div>
-                        <SearchInputProductAnalog />
-                    </Menu.Item>
-                    <Menu.Item as={NavLink} className={style.tabItemColumn} to='/associate-analog/property'>
-                        <div>Свойство аналогичнсти</div>
-                        <DropdownAnalog />
-                    </Menu.Item>
-                    <Menu.Item>
-                        <Button positive className={style.bindButton}>
-                            <Icon name='checkmark'/> Связать товар
-                        </Button>
-                    </Menu.Item>
-                </Menu>
+                <BindAnalogForm/>
                 <Switch>
                     <Route exact path={['/associate-analog', '/associate-analog/base']}>
                         <MainProduct/>
@@ -53,7 +32,7 @@ const PageAssociateAnalog = (props) => {
     );
 };
 
-export default connect (
+export default connect(
     state => ({
         propertyDropdownShow: getPropertyDropdownShow(state)
     }),

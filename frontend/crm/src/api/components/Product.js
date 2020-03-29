@@ -61,21 +61,20 @@ export default class Product {
         });
     }
 
-    getProductAttributes(productId) {
+    getProductAttributeGroups() {
         let self = this;
-        let params = `product_id=${productId}`;
         return new Promise((resolve, reject) => {
             self.client
-                .get('/api/crm/v1/products/get_product_attributes_by_id?' + params)
+                .get('/api/crm/v1/products/get_product_attribute_groups')
                 .then((response) => {
                     let out = {
-                        productAttributes: []
+                        productAttributeGroups: []
                     };
                     if (!('data' in response.data)) {
                         resolve([]);
                         return;
                     }
-                    out.productAttributes = response.data.data.productAttributes;
+                    out.productAttributeGroups = response.data.data.productAttributeGroups;
                     resolve(out);
                 });
         });
@@ -84,6 +83,18 @@ export default class Product {
     save(data) {
         let self = this;
         let url = `/api/crm/v1/products/save`;
+        return new Promise((resolve, reject) => {
+            self.client
+                .post(url, data)
+                .then((response) => {
+                    resolve(response.data);
+                });
+        });
+    }
+
+    saveAnalogGroup(data) {
+        let self = this;
+        let url = `/api/crm/v1/products/save_analog_group`;
         return new Promise((resolve, reject) => {
             self.client
                 .post(url, data)

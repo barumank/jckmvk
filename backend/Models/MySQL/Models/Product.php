@@ -307,6 +307,8 @@ class Product extends \Phalcon\Mvc\Model
         $this->setSource("product");
         $this->hasMany('id', 'Backend\Models\MySQL\Models\ProductAnalog', 'product_id', ['alias' => 'ProductAnalog']);
         $this->hasMany('id', 'Backend\Models\MySQL\Models\ProductAnalog', 'analog_id', ['alias' => 'ProductAnalog']);
+        $this->hasMany('id', 'Backend\Models\MySQL\Models\ProductSimilarGroup', 'product_id', ['alias' => 'ProductSimilarGroup']);
+        $this->hasMany('id', 'Backend\Models\MySQL\Models\ProductSimilarGroup', 'analog_id', ['alias' => 'ProductSimilarGroup']);
         $this->hasMany('id', 'Backend\Models\MySQL\Models\ProductToAttribute', 'product_id', ['alias' => 'ProductToAttribute']);
         $this->hasMany('id', 'Backend\Models\MySQL\Models\ProductToCategory', 'product_id', ['alias' => 'ProductToCategory']);
         $this->hasMany('id', 'Backend\Models\MySQL\Models\ProductToEstimate', 'product_id', ['alias' => 'ProductToEstimate']);

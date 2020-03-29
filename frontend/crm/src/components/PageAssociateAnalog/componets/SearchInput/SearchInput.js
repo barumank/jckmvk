@@ -3,10 +3,18 @@ import {Search} from "semantic-ui-react";
 import {debounce} from "lodash";
 
 const SearchInput = (props) => {
-    const { isLoading, value, onSearchChange, onResultSelect, results} = props;
+    const {
+        isLoading,
+        value,
+        onSearchChange,
+        onResultSelect,
+        results
+    } = props;
+
 
     return (
         <Search
+            {...props.input}
             loading={isLoading}
             onResultSelect={onResultSelect}
             results={results}
