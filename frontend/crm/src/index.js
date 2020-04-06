@@ -16,6 +16,8 @@ import pageProduct from './components/PageProduct/reducer'
 import pageUsers from './components/PageUsers/reducer'
 import pageOrganization from './components/PageOrganization/reducer'
 import pageUserSettings from './components/PageUserSettings/reducer'
+import pagePageAssociateAnalog from './components/PageAssociateAnalog/reducer'
+import pageProductDetail from './components/PageProductDetail/reducer'
 
 const initialState = {};
 
@@ -32,7 +34,9 @@ let reducers = {
     pageUsers,
     pageOrganization,
     pageUserSettings,
-    pageProduct
+    pageProduct,
+    pagePageAssociateAnalog,
+    pageProductDetail
 };
 
 let storeFactory = (initialState = {}) => applyMiddleware(thunk)(createStore)(combineReducers(reducers), initialState);

@@ -24,6 +24,7 @@ import {AdminRoute, UserRoute} from "./components/Auth/Route";
 import PageOrganization from "./PageOrganization/PageOrganization";
 import PageUserSettings from "./PageUserSettings/PageUserSettings";
 import PageEstimateTemplates from "./PageEstimateTemplates/PageEstimateTemplates";
+import PageProductDetail from "./PageProductDetail/PageProductDetail";
 
 
 const App = () => (
@@ -50,8 +51,11 @@ const App = () => (
                 <UserRoute path="/products">
                     <PageProducts/>
                 </UserRoute>
-                <UserRoute path="/product/:id?">
+                <UserRoute path="/product/new">
                     <PageProduct/>
+                </UserRoute>
+                <UserRoute path="/product/:productId">
+                    <PageProductDetail/>
                 </UserRoute>
                 <UserRoute path="/associate-analog">
                     <PageAssociateAnalog/>

@@ -158,6 +158,7 @@ class AttributeGroup extends \Phalcon\Mvc\Model
     {
         $this->setSource("attribute_group");
         $this->hasMany('id', 'Backend\Models\MySQL\Models\AttributeProduct', 'group_id', ['alias' => 'AttributeProduct']);
+        $this->hasMany('id', 'Backend\Models\MySQL\Models\ProductSimilarGroup', 'group_id', ['alias' => 'ProductSimilarGroup']);
     }
 
     /**

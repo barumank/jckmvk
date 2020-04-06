@@ -334,5 +334,15 @@ class Manager extends Component
         $this->productIdList = null;
     }
 
+    /**
+     * @param array|null $productIdList
+     * @return $this
+     */
+    public function setProductIdList(?array $productIdList)
+    {
+        $this->productIdList = $productIdList;
+
+        return $this;
+    }
 
 }

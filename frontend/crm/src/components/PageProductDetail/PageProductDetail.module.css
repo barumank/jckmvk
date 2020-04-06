@@ -1,0 +1,114 @@
+.containerPage{
+    padding: 18px !important;
+}
+.topContainer{
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    margin-bottom: 11px;
+}
+
+.buttonGroup{
+    display: flex;
+    flex-direction: row;
+}
+
+.topContainer :global(.ui.button) {
+    font: 14px 'OpenSansSemiBold';
+    color: #ffffff;
+    display: flex;
+    align-items: center;
+    height: 36px;
+}
+.topContainer :global(.ui.button .icon) {
+    color: #ffffff;
+    font-size: 22px;
+}
+
+.attachAnalog:global(.ui.button) {
+    background-color: #6f6f6e;
+}
+
+.saveProduct:global(.ui.button) {
+    background-color: #21ba45;
+}
+
+:global(.grid .row) .leftColumn:global(.column.wide) {
+    width: 367px !important;
+    padding: 0 19px 0 0!important;
+    display: flex;
+    flex-direction: column;
+
+    --left-image-width: 348px;
+}
+.leftColumn > * {
+    margin-top: 20px;
+}
+.leftColumn > :first-child {
+    margin-top: 0;
+}
+
+:global(.grid .row) .rightColumn:global(.column.wide) {
+    width: 790px !important;
+    padding: 0 0 0 19px !important;
+}
+
+.rightColumn>:global(.ui.segment){
+    background-color: #e0f3f2;
+}
+.rightColumn>:global(.ui.segment):nth-child(odd){
+    background-color: #e0e8f3;
+}
+
+.container:global(.ui.grid) {
+    margin: 0 !important;
+    width: 100% !important;
+}
+.container:global(.ui.grid) :global(.row) {
+    padding: 0 !important;
+}
+
+.iconDeleteImage {
+    position: absolute;
+    z-index: 2;
+    top: 5px;
+    right: 5px;
+    margin: 0 !important;
+    color: #ffffff;
+    font-size: 18px !important;
+    cursor: pointer;
+}
+.imageBackground {
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    z-index: 1;
+    display: none;
+    background-color: #000000;
+    opacity: 0.3;
+
+}
+.imageMainBlock {
+    position: relative;
+    width: var(--left-image-width);
+}
+
+.imageMainBlock:hover .imageBackground,
+.imageDopBlock:hover .imageBackground {
+    display: block;
+}
+
+.addImageButton:global(.ui.button) {
+    line-height: 17px;
+    margin-top: 10px;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: var(--left-image-width);
+    height: 35px;
+}
+
+.addImageButton :global(.icon) {
+    font-size: 19px !important;
+}

@@ -223,6 +223,7 @@ const BaseProducts = (props) => {
                             pagination={pagination}
                             productTableHeader={productTableHeader}
                             productTableBody={productTableBody}
+                            showHref={1}
                         />
                     </ProductContainer>
                 </ProductAndCategoryContainer>
