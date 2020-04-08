@@ -54,9 +54,8 @@ const PageProductDetail = (props) => {
         productBrandTableBody,
         productsBrandLoading
     } = props;
-
-    const { productId } = useParams();
-
+    const params = new URLSearchParams(props.location.search);
+    const productId = params.get('productId');
     useEffect(() => {
         fetchProduct(productId);
         onFetchProductAnalogs(productId, 17);
