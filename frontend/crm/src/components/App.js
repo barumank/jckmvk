@@ -54,8 +54,7 @@ const App = () => (
                 <UserRoute path="/product/new">
                     <PageProduct/>
                 </UserRoute>
-                <UserRoute path="/product/:productId">
-                    <PageProductDetail/>
+                <UserRoute path="/product/:productId(\d+)?" component={PageProductDetail}>
                 </UserRoute>
                 <UserRoute path="/associate-analog">
                     <PageAssociateAnalog/>

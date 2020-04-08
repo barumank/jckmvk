@@ -1212,3 +1212,46 @@ CREATE TABLE IF NOT EXISTS `user_to_organization` (
 /*!40101 SET SQL_MODE=IFNULL(@OLD_SQL_MODE, '') */;
 /*!40014 SET FOREIGN_KEY_CHECKS=IF(@OLD_FOREIGN_KEY_CHECKS IS NULL, 1, @OLD_FOREIGN_KEY_CHECKS) */;
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
+
+CREATE TABLE `product_similar_group` (
+  `id` int(11) NOT NULL,
+  `product_id` bigint(20) UNSIGNED NOT NULL,
+  `analog_id` bigint(20) UNSIGNED NOT NULL,
+  `group_id` int(10) UNSIGNED NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+--
+-- Индексы сохранённых таблиц
+--
+
+--
+-- Индексы таблицы `product_similar_group`
+--
+ALTER TABLE `product_similar_group`
+  ADD PRIMARY KEY (`id`),
+  ADD UNIQUE KEY `UNIQUE` (`product_id`,`analog_id`,`group_id`),
+  ADD KEY `FK_product_similar_group_product2` (`analog_id`),
+  ADD KEY `FK_product_similar_group_attribute_group` (`group_id`);
+
+--
+-- AUTO_INCREMENT для сохранённых таблиц
+--
+
+--
+-- AUTO_INCREMENT для таблицы `product_similar_group`
+--
+ALTER TABLE `product_similar_group`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=53;
+
+--
+-- Ограничения внешнего ключа сохраненных таблиц
+--
+
+--
+-- Ограничения внешнего ключа таблицы `product_similar_group`
+--
+ALTER TABLE `product_similar_group`
+  ADD CONSTRAINT `FK_product_similar_group_attribute_group` FOREIGN KEY (`group_id`) REFERENCES `attribute_group` (`id`) ON DELETE CASCADE,
+  ADD CONSTRAINT `FK_product_similar_group_product` FOREIGN KEY (`product_id`) REFERENCES `product` (`id`) ON DELETE CASCADE,
+  ADD CONSTRAINT `FK_product_similar_group_product2` FOREIGN KEY (`analog_id`) REFERENCES `product` (`id`) ON DELETE CASCADE;
+COMMIT;

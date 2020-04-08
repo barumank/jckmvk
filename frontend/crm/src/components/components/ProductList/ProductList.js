@@ -47,7 +47,7 @@ const renderProductList = renderProductListSelectorCreator([
                             <Table.Row key={row.id}>
                                 <Table.Cell key={idCol.key} className={style.colTableId}>{idCol.value}</Table.Cell>
                                 <Table.Cell key={nameCol.key} className={style.colTableName} title={nameCol.value}>
-                                    {showHref === 1 ? <a href={`/product/${idCol.value}`}>{nameCol.value}</a> : nameCol.value }
+                                    {showHref === 1 ? <a href={`/product?productId=${idCol.value}`}>{nameCol.value}</a> : nameCol.value }
                                 </Table.Cell>
                                 {list.map((item) => (
                                     <Table.Cell key={item.key} title={item.value}>{item.value}</Table.Cell>
